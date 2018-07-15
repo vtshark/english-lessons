@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<hr>
+<div class="container">
+    <div class="offset-md-1 col-md-6">
+        <a href="{{ path('show_random_words') }}" class="btn btn-button btn-primary">Random</a>
+        <a href="{{ path('show_all_words') }}" class="btn btn-button btn-primary">All</a>
+    </div>
+</div>
+<hr>
+<div class="container">
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead>
+            <thead>
+            <tr>
+                <th scope="col">eng</th>
+                <th scope="col">rus</th>
+                <th scope="col">description</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for word in words %}
+                <tr>
+                    <td>{{ word.eng }}</td>
+                    <td>{{ word.rus }}</td>
+                    <td>{{ word.description }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+{% endblock %}
