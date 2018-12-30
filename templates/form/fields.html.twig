@@ -1,0 +1,16 @@
+{# templates/form/fields.html.twig #}
+{% block form_row %}
+    {% spaceless %}
+        <div class="row">
+            <div class="col-xs-6">
+                {{ form_label(form) }}
+            </div>
+            <div class="col-xs-6">
+                {{ form_widget(form) }}
+            </div>
+        </div>
+        <div class="row">
+            {{ form_errors(form) }}
+        </div>
+    {% endspaceless %}
+{% endblock form_row %}
