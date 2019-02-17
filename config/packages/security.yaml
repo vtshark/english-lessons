@@ -9,7 +9,7 @@ security:
                         password: $2y$12$MfWt6Fz1AS.YBX8HZiyj1.TJZGgeXsziD.sbuHZm2l02Lp/w.EsnK
                         roles: 'ROLE_USER'
                     admin:
-                        password: $2y$12$k61R.F3SYKab0O7dImx0ge2SUvLVatTEb18vP24wqA1tGpaRsqIKC
+                        password: $2y$12$fB79FM6z/Lk0LVeA3pjBs.JfkkWzYw4tTUB.MlweHUhNCr.MvHN4u
                         roles: 'ROLE_ADMIN'
     firewalls:
         dev:
@@ -35,6 +35,7 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: ^/add, roles: ROLE_ADMIN }
+        - { path: ^/edit, roles: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
     encoders:

@@ -18,6 +18,7 @@
                 <th scope="col">eng</th>
                 <th scope="col">rus</th>
                 <th scope="col">description</th>
+                <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,9 @@
                     <td>{{ word.eng }}</td>
                     <td>{{ word.rus }}</td>
                     <td>{{ word.description }}</td>
+                    <td>
+                        <a href="{{ path('view_word', {'id' : word.id}) }}">View</a>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
