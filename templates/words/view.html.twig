@@ -28,8 +28,28 @@
                 <li class="list-group-item">{{ word.rus }}</li>
                 <li class="list-group-item">{{ word.description }}</li>
             </ul>
+
             <br>
-            <a href="{{ path('edit_words', {'id' : word.id}) }}" class="btn btn-button btn-primary">Edit</a>
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-5">
+                        <a href="{{ path('edit_words', {'id' : word.id}) }}" class="btn btn-button btn-primary">Edit</a>
+                    </div>
+                    &nbsp;&nbsp;&nbsp;
+                    <div class="col-xs-5">
+                        <form action="{{path('delete_words', {'id' : word.id})}}"
+                              method="post" data-confirmation="true" id="delete-word">
+                            <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+                            <button type="submit" class="btn btn-button btn-danger" onclick="return confirm('Are you sure?')">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 

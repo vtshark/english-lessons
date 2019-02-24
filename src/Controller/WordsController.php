@@ -77,7 +77,7 @@ class WordsController extends AbstractController
                 'Saved: ' . $word->getEng() . ' - ' . $word->getRus()
             );
 
-            return $this->redirectToRoute('view_word', ['id' => $word->getIt()]);
+            return $this->redirectToRoute('view_word', ['id' => $word->getId()]);
         }
 
         return $this->render('words/add.html.twig', [
@@ -119,4 +119,32 @@ class WordsController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/delete/{id}", requirements={"id": "\d+"}, methods={"POST"}, name="delete_words")
+     * @param Request $request
+     * @param Word $word
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @throws \Exception
+     */
+    public function actionDelete(Request $request, Word $word)
+    {
+
+        if (!$this->isCsrfTokenValid('delete', $request->request->get('token'))) {
+            throw new \Exception('Error!');
+        }
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($word);
+        $em->flush();
+
+        $session = new Session();
+        $session->getFlashBag()->add(
+            'success',
+            'Deleted: ' . $word->getEng() . ' - ' . $word->getRus()
+        );
+
+        return $this->redirectToRoute('show_all_words');
+    }
+
 }
